@@ -1,8 +1,8 @@
 #include "Car.h"
-#include "Engine.h"
+#include "IEngine.h"
 #include "Arduino.h"
 
-Car::Car(Engine* CarEngine_, short LEDFront_, short LEDBack_)
+Car::Car(IEngine* CarEngine_, short LEDFront_, short LEDBack_)
 : CarEngine(CarEngine_), LEDFront(LEDFront_),LEDBack(LEDBack_)
 {
   
@@ -24,7 +24,7 @@ void Car::Run()
     switch (command) 
     {
       case 'F': //Forward
-         CarEngine->RunForward();
+        CarEngine->RunForward();
          digitalWrite(LEDBack, LOW); // Turn off Back lights
         break;
       case 'B': //Backward
@@ -61,4 +61,8 @@ void Car::Run()
   }
    
   
+}
+Car::~Car()
+{
+  delete CarEngine;
 }
