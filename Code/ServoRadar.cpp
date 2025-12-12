@@ -8,7 +8,7 @@ ServoRadar::ServoRadar(short ServoPin_,  Sensor* AttachedSensor): ServoPin(Servo
    MyServo->attach(ServoPin);
    Itterator =0;
 }
-
+//TODO: 
 void ServoRadar::Itterate()
 {
   if (Itterator < 180&& GoRight)
@@ -30,18 +30,13 @@ void ServoRadar::Itterate()
 bool ServoRadar::Run()
 {
   
-
-  //MyServo->write(Itterator);
   return MySensor->DoScan();
-
   
 }
+
 void ServoRadar::TurnServo(short Degrees_)
 {
-  if (Degrees_ >180 ||Degrees_ <0)
-  {
-    return;
-  }
+
   MyServo->write(Degrees_);
 }
 

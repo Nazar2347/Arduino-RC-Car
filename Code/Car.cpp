@@ -1,8 +1,8 @@
 #include "Car.h"
 #include "Arduino.h"
 
-Car::Car(short MotorRB_, short MotorRF_, short MotorLF_, short MotorLB_)
-: MotorRB(MotorRB_), MotorRF(MotorRF_), MotorLF(MotorLF_), MotorLB(MotorLB_)
+Car::Car(short MotorRF_, short MotorRB_, short MotorLF_, short MotorLB_)
+:  MotorRF(MotorRF_),MotorRB(MotorRB_), MotorLF(MotorLF_), MotorLB(MotorLB_)
 {
 
   Serial.begin(9600);
@@ -11,33 +11,34 @@ Car::Car(short MotorRB_, short MotorRF_, short MotorLF_, short MotorLB_)
   pinMode(MotorLF, OUTPUT); //
   pinMode(MotorLB, OUTPUT); //
 }
+
+char Car::GetCommand()
+{
+   return command;
+}
 void Car::Run()
 {
-  short MotorRB = 6;//Right-Forward
-  short MotorRF = 5; //Right -Bacward
-  short MotorLF = 9; // Left-Forward
-  short MotorLB = 10; // Left-Backward //good
-
-  if (Serial.available() > 0) {
-    char command = Serial.read();
-
-    Serial.println(command);
-
+  if (Serial.available() > 0) 
+  {
+     command = Serial.read();
+    
     switch (command) {
       case 'F': //Forward
-         analogWrite(MotorLF, 150);
+         analogWrite(MotorLF, SpeedFull);
          analogWrite(MotorLB, 0);
-         analogWrite(MotorRF, 150);
+         analogWrite(MotorRF, SpeedFull);
          analogWrite(MotorRB, 0);
+         digitalWrite(LEDBack, LOW); // Turn off Back lights
         break;
       case 'B': //Backward
          analogWrite(MotorLF, 0);
-         analogWrite(MotorLB, 150);
+         analogWrite(MotorLB, SpeedFull);
          analogWrite(MotorRF, 0);
-         analogWrite(MotorRB, 150);
+         analogWrite(MotorRB, SpeedFull);
+         digitalWrite(LEDBack, HIGH); // Turn on Back lights
         break;
       case 'R': //Right
-         analogWrite(MotorLF, 150);
+         analogWrite(MotorLF, SpeedFull);
          analogWrite(MotorLB, 0);
          analogWrite(MotorRF, 0);
          analogWrite(MotorRB, 0);
@@ -45,32 +46,34 @@ void Car::Run()
       case 'L': //Left
          analogWrite(MotorLF, 0);
          analogWrite(MotorLB, 0);
-         analogWrite(MotorRF, 150);
+         analogWrite(MotorRF, SpeedFull);
          analogWrite(MotorRB, 0);
         break;
         case 'H': //Forward -Right
-         analogWrite(MotorLF, 150);
+         analogWrite(MotorLF, SpeedFull);
          analogWrite(MotorLB, 0);
-         analogWrite(MotorRF, 75);
+         analogWrite(MotorRF, SpeedOnTurn);
          analogWrite(MotorRB, 0);
         break;
       case 'G': //Forward -left
-         analogWrite(MotorLF, 75);
+         analogWrite(MotorLF, SpeedOnTurn);
          analogWrite(MotorLB, 0);
-         analogWrite(MotorRF, 150);
+         analogWrite(MotorRF, SpeedFull);
          analogWrite(MotorRB, 0);
         break;
       case 'J': //Backward -Right
          analogWrite(MotorLF, 0);
-         analogWrite(MotorLB, 150);
+         analogWrite(MotorLB, SpeedFull);
          analogWrite(MotorRF, 0);
-         analogWrite(MotorRB, 75);
+         analogWrite(MotorRB, SpeedOnTurn);
+         digitalWrite(LEDBack, HIGH);
         break;
       case 'I': //Backward -Left
           analogWrite(MotorLF, 0);
-         analogWrite(MotorLB, 75);
+         analogWrite(MotorLB, SpeedOnTurn);
          analogWrite(MotorRF, 0);
-         analogWrite(MotorRB, 150);
+         analogWrite(MotorRB, SpeedFull);
+         digitalWrite(LEDBack, HIGH);
         break;
       case 'S':
          analogWrite(MotorLF, 0);
@@ -78,6 +81,12 @@ void Car::Run()
          analogWrite(MotorRF, 0);
          analogWrite(MotorRB, 0);
         break;
+    
+      case'U': digitalWrite(LEDFront, HIGH); break; 
+      case'u': digitalWrite(LEDFront,LOW); break;
+
     }
   }
+   
+  
 }
