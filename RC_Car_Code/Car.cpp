@@ -1,15 +1,14 @@
 #include "Car.h"
+#include "Engine.h"
 #include "Arduino.h"
 
-Car::Car(short MotorRF_, short MotorRB_, short MotorLF_, short MotorLB_)
-:  MotorRF(MotorRF_),MotorRB(MotorRB_), MotorLF(MotorLF_), MotorLB(MotorLB_)
+Car::Car(Engine* CarEngine_, short LEDFront_, short LEDBack_)
+: CarEngine(CarEngine_), LEDFront(LEDFront_),LEDBack(LEDBack_)
 {
-
+  
   Serial.begin(9600);
-  pinMode(MotorRF, OUTPUT); //
-  pinMode(MotorRB, OUTPUT); //
-  pinMode(MotorLF, OUTPUT); //
-  pinMode(MotorLB, OUTPUT); //
+  pinMode(LEDFront, OUTPUT);//
+  pinMode(LEDBack, OUTPUT); //
 }
 
 char Car::GetCommand()
@@ -20,66 +19,39 @@ void Car::Run()
 {
   if (Serial.available() > 0) 
   {
-     command = Serial.read();
+    command = Serial.read();
     
-    switch (command) {
+    switch (command) 
+    {
       case 'F': //Forward
-         analogWrite(MotorLF, SpeedFull);
-         analogWrite(MotorLB, 0);
-         analogWrite(MotorRF, SpeedFull);
-         analogWrite(MotorRB, 0);
+         CarEngine->RunForward();
          digitalWrite(LEDBack, LOW); // Turn off Back lights
         break;
       case 'B': //Backward
-         analogWrite(MotorLF, 0);
-         analogWrite(MotorLB, SpeedFull);
-         analogWrite(MotorRF, 0);
-         analogWrite(MotorRB, SpeedFull);
+         CarEngine->RunBackward();
          digitalWrite(LEDBack, HIGH); // Turn on Back lights
         break;
       case 'R': //Right
-         analogWrite(MotorLF, SpeedFull);
-         analogWrite(MotorLB, 0);
-         analogWrite(MotorRF, 0);
-         analogWrite(MotorRB, 0);
+         CarEngine->RunRight();
         break;
       case 'L': //Left
-         analogWrite(MotorLF, 0);
-         analogWrite(MotorLB, 0);
-         analogWrite(MotorRF, SpeedFull);
-         analogWrite(MotorRB, 0);
+         CarEngine->RunLeft();
         break;
-        case 'H': //Forward -Right
-         analogWrite(MotorLF, SpeedFull);
-         analogWrite(MotorLB, 0);
-         analogWrite(MotorRF, SpeedOnTurn);
-         analogWrite(MotorRB, 0);
+      case 'H': //Forward -Right
+         CarEngine->RunForwardRight();
         break;
       case 'G': //Forward -left
-         analogWrite(MotorLF, SpeedOnTurn);
-         analogWrite(MotorLB, 0);
-         analogWrite(MotorRF, SpeedFull);
-         analogWrite(MotorRB, 0);
+         CarEngine->RunForwardLeft();
         break;
       case 'J': //Backward -Right
-         analogWrite(MotorLF, 0);
-         analogWrite(MotorLB, SpeedFull);
-         analogWrite(MotorRF, 0);
-         analogWrite(MotorRB, SpeedOnTurn);
-         digitalWrite(LEDBack, HIGH);
+         CarEngine->RunBackwardRight();
         break;
       case 'I': //Backward -Left
-          analogWrite(MotorLF, 0);
-         analogWrite(MotorLB, SpeedOnTurn);
-         analogWrite(MotorRF, 0);
-         analogWrite(MotorRB, SpeedFull);
+         CarEngine->RunBackwardLeft();
          digitalWrite(LEDBack, HIGH);
         break;
       case 'S':
-         analogWrite(MotorLF, 0);
-         analogWrite(MotorLB, 0);
-         analogWrite(MotorRF, 0);
-         analogWrite(MotorRB, 0);
+        CarEngine->Stop();
         break;
     
       case'U': digitalWrite(LEDFront, HIGH); break; 

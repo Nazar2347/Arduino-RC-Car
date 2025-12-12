@@ -1,17 +1,19 @@
+#pragma once
+class Engine ;
+
 class Car
 {
   private:
-  short MotorRB;
-  short MotorRF;
-  short MotorLF;
-  short MotorLB;
+  short LEDFront;
+  short LEDBack;
+  Engine* CarEngine;
 
   short SpeedFull =200;
   short SpeedOnTurn = SpeedFull/4;
   
   char command = 'S';
   public:
-  Car (short MotorRF_, short MotorRB_, short MotorLF_, short MotorLB_);
+  Car (Engine* CarEngine, short LEDFront_, short LEDBack_);
   void Run();
   char GetCommand();
 };
