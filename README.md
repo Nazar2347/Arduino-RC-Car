@@ -7,7 +7,7 @@ This project was made as a part of Embedded system subject in  my University WSB
 
 
 ## Here is Class Diagram:
-
+![Class Diagram](Diagrams/ClassDiagram.png)
 ## Circuit Diagram:
 ![Circuit Diagram](Diagrams/Circut_Diagram.png)
 
