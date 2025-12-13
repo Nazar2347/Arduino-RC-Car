@@ -14,5 +14,7 @@ This project was made as a part of Embedded system subject in  my University WSB
 
 
 ## Photos of the car itself:
-
+![Car Collage](Photos/CarCollage.jpg)
 ## Photos of mobile app sending the signal to the car:
+![Mobile App][Photos/MobileApp.jpg]
+
