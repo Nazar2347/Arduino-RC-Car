@@ -1,5 +1,6 @@
 # Arduino-RC-Car
-This project was made in a team as a part of Computer Architecture and Embedded system subject in  my University WSB-NLU 
+This project was made in a team as a part of Computer Architecture and Embedded system subject in my
+[University WSB-NLU](https://www.wsb-nlu.edu.pl/en) 
 
 
  Is required to have Mobile app: [BT Car Controller](https://play.google.com/store/apps/details?id=com.giristuido.bluetooth.car.controller&hl=pl)
