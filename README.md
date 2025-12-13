@@ -5,11 +5,13 @@ This project was made as a part of Embedded system subject in  my University WSB
  Is required to have Mobile app: [BT Car Controller](https://play.google.com/store/apps/details?id=com.giristuido.bluetooth.car.controller&hl=pl)
 
 
-
-## Here is Class Diagram:
-![Class Diagram](Diagrams/ClassDiagram.png)
 ## Circuit Diagram:
 ![Circuit Diagram](Diagrams/Circut_Diagram.png)
+## Here is Class Diagram:
+![Class Diagram](Diagrams/ClassDiagram.png)
+## Main loop action flow: 
+![Flow Diagram](Diagrams/MainFlowDiagram.png)
+
 
 ## Photos of the car itself:
 
