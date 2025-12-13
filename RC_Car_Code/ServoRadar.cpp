@@ -27,7 +27,7 @@ void ServoRadar::Itterate()
   }
 }
 
-bool ServoRadar::Run()
+bool ServoRadar::CheckForObstacle()
 {
   
   return MySensor->DoScan();

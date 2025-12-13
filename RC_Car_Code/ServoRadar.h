@@ -15,7 +15,7 @@ class ServoRadar
   public:
   ServoRadar(short ServoPin_,  Sensor* AttachedSensor);
   ~ServoRadar();
-  bool Run();
+  bool CheckForObstacle();
   void Itterate();
   void TurnServo(short Degrees_);
 };

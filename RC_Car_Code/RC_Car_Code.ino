@@ -55,7 +55,7 @@ void loop()
   
   RCCar.Run();
   
-  if (FrontRadar.Run())
+  if (FrontRadar.CheckForObstacle())
   {
     tone(BuzzerPin,0,3);
     noTone(BuzzerPin);
