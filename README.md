@@ -20,3 +20,8 @@ This project was made in a team as a part of Computer Architecture and Embedded 
 ## Photos of mobile app sending the signal to the car:
 ![Mobile App](Photos/MobileApp.jpg)
 
+## 3D Print fotage
+![LowerPlatform](Photos/LowerCarPArtPrint.gif)
+![Bumpers](Photos/BumpersCarPrint.gif)
+![SidesFrames](SidesCarPrint.gif)
+
