@@ -21,7 +21,7 @@ This project was made in a team as a part of Computer Architecture and Embedded 
 ![Mobile App](Photos/MobileApp.jpg)
 
 ## 3D Print fotage
-![LowerPlatform](Photos/LowerCarPArtPrint.gif)
+![LowerPlatform](Photos/LowerCarPartPrint.gif)
 ![Bumpers](Photos/BumpersCarPrint.gif)
 ![SidesFrames](Photos/SidesCarPrint.gif)
 
